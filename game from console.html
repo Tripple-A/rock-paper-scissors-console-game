@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+<body>
+
+    <script>
+
+        var YourScore=0;
+        var ComputerScore=0;
+
+        function ComputerPlay(){
+   let x= Math.random();
+    if (x<=0.34){ computerChoice= "rock";return computerChoice}
+    else if(x<=0.67){computerChoice="paper"; return computerChoice }
+    else {computerChoice= "scissors"; return computerChoice}
+}
+
+ function userPlay(){let playerChoice=prompt('Please pick "rock","paper" or "scissors"').toLowerCase();
+                     if (playerChoice=="rock"||playerChoice=="paper"||playerChoice=="scissors"){
+                         return playerChoice
+                     }
+                      else {alert ('Please pick a suitable option')}
+                      
+
+ }
+function playRound(choice1,choice2){
+    alert ("You chose "+ choice1+ " and the computer chose "+ choice2)
+    
+    if(choice1==choice2){ return ("It is a tie,please try again");}
+    else if (
+        (choice1=="rock"&& choice2=="scissors") ||
+        (choice1=="scissors" && choice2=="paper")||
+        (choice1=="paper"&& choice2=="rock")
+    )
+    {return ("You have won this round");
+}
+else if(
+    (choice2=="rock"&& choice1=="scissors") ||
+        (choice2=="scissors" && choice1=="paper")||
+        (choice2=="paper"&& choice1=="rock")
+){ return ("The Computer won this round") }
+else {return('You have to replay this round')}
+    
+   
+}
+
+function updateScores(result){
+    alert (result)
+if(
+        (result=="It is a tie,please try again")||(result=='You have to replay this round')
+)
+        {YourScore+=0; ComputerScore+=0}
+    else if( result=="You have won this round"){ YourScore+=1}
+    else{ComputerScore+=1};
+    console.log ('Your Score is '+YourScore) ;
+    console.log ("The computer's score is " + ComputerScore);
+    
+}
+function clearScores(){
+YourScore=0;
+ComputerScore=0;
+}
+
+function game(numOfRounds){
+    do{
+    var playerSelection=userPlay();
+    var computerSelection=ComputerPlay();
+    var result= playRound(playerSelection,computerSelection);
+    updateScores(result);
+if(result!="It is a tie,please try again"){
+numOfRounds++}
+
+}
+    while(numOfRounds<5);
+
+    if(YourScore>ComputerScore){ alert ("You have won."+ "you scored "+YourScore+" out of 5");
+    console.log ("You have won."+ "you scored "+YourScore+" out of 5")}
+    else {alert ('You have lost. you scored '+ YourScore+ " out of 5");
+    console.log ('You have lost. you scored '+ YourScore+ " out of 5") }
+clearScores()
+}
+
+    console.log(game(0))
+    
+
+
+
+        </script>
+
+</body>
+
+</html>
+
